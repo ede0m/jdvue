@@ -2,13 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
+import Home from './pages/Home.vue'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css';
 
 Vue.use(Router)
 
 const routes = [
-    { path: '/', component: Login },
+    { path: '/', component: Home },
+    { path: '/login', component: Login },
     { path: '/register', component: Register }
 ]
 

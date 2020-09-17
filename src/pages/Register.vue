@@ -50,6 +50,7 @@
 
 <script>
 import API from '../services/api'
+import notify from '../services/notify'
 
 export default {
     name: 'Register',
@@ -84,6 +85,7 @@ export default {
                 }
                 API.acceptUserInvite(payload)
                     .then(() => {
+                        notify.success('successful register!', 'http')
                         this.$router.push('/')
                     })
                     .catch(err => {

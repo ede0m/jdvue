@@ -3,7 +3,6 @@ import axios from 'axios'
 import notify from './notify'
 import router from '../router'
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css';
 
 // create a new axios instance
 const instance = axios.create({ 
@@ -49,19 +48,21 @@ const errorInterceptor = error => {
                 console.error(error.response.status, error.message);
                 notify.warn('Data not found','http');
                 break;
-    
-            case 401: // authentication error, logout the user
-                notify.err( 'Auth Error. Please login again', 'http');
-                localStorage.removeItem('token');
-                router.push('/');
+            case 404: // authentication error, logout the user
+                notify.err( 'Not found', 'http');
                 break;
-    
+            case 401: // authentication error, logout the user
+                notify.err( 'Unauthorized', 'http');
+                router.push("/login")
+                localStorage.removeItem('token');
+                break;
             default:
                 console.error(error.response.status, error.message);
                 notify.err('Server Error', 'http');
     
         }
     }
+    NProgress.done()
     return Promise.reject(error);
 }
 
@@ -69,11 +70,9 @@ const errorInterceptor = error => {
 const responseOkayInterceptor = response => {
     switch(response.status) {
         case 200: 
-            notify.success('success!', 'http')
             break;
         // any other cases
         default:
-            notify.success('success!', 'http')
             // default case
     }
 

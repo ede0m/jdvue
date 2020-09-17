@@ -8,4 +8,11 @@ export default {
             })
     },
 
+    login(payload) {
+        return http.post("/session", payload)
+            .then(res => {
+                return res
+            })
+    }
+
 }
