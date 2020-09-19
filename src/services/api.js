@@ -13,6 +13,13 @@ export default {
             .then(res => {
                 return res
             })
+    },
+
+    getMasterSchedule(groupID) {
+        return http.get("/schedule/master/"+groupID)
+            .then(res => {
+                return res
+            })
     }
 
 }

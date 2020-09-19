@@ -1,40 +1,23 @@
 <template>
     <div>
-        <b-sidebar 
-            id="sidebar" 
-            :title=this.name
-            :no-close-on-route-change="true"
-            :no-header="true" 
-            :visible="true" 
-            width="300px"
-            shadow>
-            <div class="px-3 py-2">
-                <div id="sidebar-header">
-                    <h3>{{name}}</h3>
-                    <unicon name="setting" fill="royalblue"></unicon>
-                </div>
-                <hr>
-                
-                <div id="groups">
-                    <b-row>
-                        <b-col col lg="1"><unicon name="angle-right" fill="royalblue"></unicon></b-col>
-                        <b-col col lg="3"><h5 class="sidebar-label">groups</h5></b-col>
-                    </b-row>
-                </div>
-                <br>
-                <hr>
-
-
-            </div>
-        </b-sidebar>
+        <b-row>
+            <b-col col lg="4"><jd-sidebar :groups=groups :name=name></jd-sidebar></b-col>
+            <b-col col lg="8"><schedule-group></schedule-group></b-col>
+        </b-row>
     </div>
 </template>
 
 <script>
 import store from '../services/store'
+import JdSidebar from '../components/JdSidebar'
+import ScheduleGroup from '../components/ScheduleGroup'
 
 export default {
   name: 'Home',
+  components: {
+      JdSidebar,
+      ScheduleGroup
+  },
   data: function() {
       return {
           groups: null,
@@ -46,6 +29,7 @@ export default {
       if (user != null) {
         this.groups = user.groups;
         this.name = user.name;
+        store.mutations.setCurrentGroup(this.groups[0]);
       } else {
           this.$router.push("/login");
       }
@@ -55,6 +39,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.hover-section:hover {
+    background: #4587d88a;
+}
 
 #groups {
     margin-top: 15%;
