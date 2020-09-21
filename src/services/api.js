@@ -1,8 +1,16 @@
 import http from './http'
 
 export default {
+    
     acceptUserInvite(payload) {
         return http.patch("/user/invitation", payload)
+            .then(res => {
+                return res
+            })
+    },
+
+    generateSchedule(payload) {
+        return http.post("/schedule", payload)
             .then(res => {
                 return res
             })

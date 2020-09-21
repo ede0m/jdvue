@@ -4,11 +4,12 @@ import Notifications from 'vue-notification'
 import Unicon from 'vue-unicons'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import { uniSetting, uniAngleRight, uniSchedule, uniExchange, uniAngleDown } from 'vue-unicons/src/icons'
+import { uniSetting, uniAngleRight, uniSchedule, uniExchange, uniAngleDown, 
+  uniArrowRight, uniArrowLeft, uniTimes } from 'vue-unicons/src/icons'
 import App from './App.vue'
 import router from './router'
 
-Unicon.add([uniSetting, uniAngleRight, uniSchedule, uniExchange, uniAngleDown])
+Unicon.add([uniSetting, uniAngleRight, uniSchedule, uniExchange, uniAngleDown, uniArrowRight, uniArrowLeft, uniTimes])
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

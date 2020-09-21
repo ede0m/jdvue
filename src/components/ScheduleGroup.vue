@@ -2,11 +2,13 @@
     <div>
         <b-container id="content">
             <b-row>
-                <b-col col lg="7">
+                <b-col col lg="8">
                     <schedule v-bind:sch="groupSchedule" :groupName="group.name"></schedule>
                 </b-col>
-                <b-col col lb="5">
-                    <p>details</p>
+                <b-col col lb="4">
+                    <div id="group-details">
+
+                    </div>
                 </b-col>
             </b-row>
         </b-container>
@@ -38,6 +40,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#group-details {
+    height: 100%;
+    border-left: solid 1px #6363635e;
+}
+
 #content {
     width: 100%;
     height: 100%;

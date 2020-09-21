@@ -32,7 +32,7 @@
                 <br>
                 <hr>
                 <div >
-                    <b-row class="hover-section">
+                    <b-row class="hover-section" v-on:click="setToolView">
                         <b-col col lg="4"><unicon name="schedule" fill="royalblue"></unicon></b-col>
                         <b-col col lg="3"><h4 class="sidebar-label">tool</h4></b-col>
                     </b-row>
@@ -70,6 +70,10 @@ export default {
     },
     chooseGroup(group) {
         store.mutations.setCurrentGroup(group);
+        this.$emit('sidebar-nav', 'ScheduleGroup')
+    },
+    setToolView(){
+        this.$emit('sidebar-nav', 'ScheduleTool')
     }
   },
   data: function() {

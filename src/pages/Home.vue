@@ -1,8 +1,14 @@
 <template>
     <div>
         <b-row>
-            <b-col col lg="4"><jd-sidebar :groups=groups :name=name></jd-sidebar></b-col>
-            <b-col col lg="8"><schedule-group></schedule-group></b-col>
+            <b-col col lg="3">
+              <jd-sidebar :groups=groups :name=name @sidebar-nav="swapComponent">
+              </jd-sidebar>
+            </b-col>
+            <b-col col lg="9">
+              <!-- <schedule-group></schedule-group> -->
+              <component v-bind:is="currentComponent"></component>
+            </b-col>
         </b-row>
     </div>
 </template>
@@ -11,18 +17,27 @@
 import store from '../services/store'
 import JdSidebar from '../components/JdSidebar'
 import ScheduleGroup from '../components/ScheduleGroup'
+import ScheduleTool from '../components/ScheduleTool'
 
 export default {
   name: 'Home',
   components: {
       JdSidebar,
-      ScheduleGroup
+      ScheduleGroup,
+      ScheduleTool
   },
   data: function() {
       return {
           groups: null,
           name: null,
+          currentComponent: 'ScheduleGroup'
       }
+  },
+  methods: {
+    swapComponent: function(component)
+    {
+      this.currentComponent = component;
+    }
   },
   created: function() {
       var user = store.getters.user();

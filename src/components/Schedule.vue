@@ -3,22 +3,45 @@
         <b-container id="content">
             <div id="header">
                 <b-row>
-                    <b-col col lg="1"><h2>{{groupName}}:</h2></b-col>
-                    <b-col col lg="10">
-                        <p id="season-date-range">
-                        <b>{{currSeason && dateFormat(currSeason.openWeek)}}</b> to 
-                        <b>{{currSeason && dateFormat(currSeason.closeWeek)}}</b> 
-                        </p>
+
+                    <b-col col lg="3"><h4>{{groupName}}:</h4></b-col>
+                    <b-col col lg="9">
+                        <b-row>
+                            <b-col col lg="1">
+                                <button v-on:click="prev()"><unicon name="arrow-left" fill="royalblue"></unicon></button>
+                            </b-col>
+                            <b-col col lg="8">
+                                <p id="season-date-range">
+                                <b>{{currSeason && dateFormat(currSeason.openWeek)}}</b> to 
+                                <b>{{currSeason && dateFormat(currSeason.closeWeek)}}</b></p>
+                            </b-col>
+                            <b-col col lg="1">
+                                <button v-on:click="next()"><unicon name="arrow-right" fill="royalblue"></unicon></button>
+                            </b-col>
+                        </b-row>
                     </b-col>
                 </b-row>
             </div>
             <br><br>
             <b-row>
-                <b-col col lg="7">
+                <b-col col lg="10">
                     <div id="schedule">
-                        <p>{{JSON.stringify(currSeason)}}</p>
                         <b-row>
-                            <b-col></b-col>
+                            <b-col col lg="1"></b-col>
+                            <b-col col lg="11">
+                                <div v-if="currSeason && currSeason.blocks">
+                                <b-row class="season-block" v-for="block in currSeason.blocks" v-bind:key="block.id">
+                                    <b-col col lg="12">
+                                        <hr>
+                                        <b-row class="week " v-for="week in block.weeks" v-bind:key="week.id">
+                                            <b-col col lg="4"><p>{{dateFormat(week.startDate)}}</p></b-col>
+                                            <b-col col lg="2"></b-col>
+                                            <b-col col lg="5"><p>{{week.participant}}</p></b-col>
+                                        </b-row>
+                                    </b-col>
+                                </b-row>
+                                </div>
+                            </b-col>
                         </b-row>
                     </div>
                 </b-col>
@@ -61,6 +84,16 @@ export default {
             month = '0' + month;
         }
         return month + '-' + day + '-' + year;
+    },
+    prev() {
+        if (this.currSeasonIdx > 0){
+            this.currSeasonIdx--;
+        }
+    },
+    next() {
+        if (this.currSeasonIdx < this.sch.seasons.length-1){
+            this.currSeasonIdx++;
+        }
     }
   }
 }
@@ -68,6 +101,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.week:hover {
+    background: #6e9fd88a;
+}
+
+
+#season-block {
+    color: skyblue;
+}
+
+#week {
+    color: skyblue;
+    height: 100px;
+}
 
 #season-date-range {
     margin-top: 10px;
@@ -83,7 +130,6 @@ export default {
     width: 100%;
 }
 h3 {
-  margin: 40px 0 0;
 }
 ul {
   list-style-type: none;
