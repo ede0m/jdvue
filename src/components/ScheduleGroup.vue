@@ -3,7 +3,9 @@
         <b-container id="content">
             <b-row>
                 <b-col col lg="8">
-                    <schedule v-bind:sch="groupSchedule" :groupName="group.name"></schedule>
+                    <div v-if="group">
+                        <schedule v-bind:sch="groupSchedule" :groupName="group.name"></schedule>
+                    </div>
                 </b-col>
                 <b-col col lb="4">
                     <div id="group-details">

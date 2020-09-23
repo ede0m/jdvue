@@ -5,7 +5,7 @@
             :no-close-on-route-change="true"
             :no-header="true" 
             :visible="true" 
-            width="300px"
+            width="320px"
             shadow>
             <div class="px-3 py-2">
                 <br>
@@ -23,7 +23,7 @@
                     <div v-show="showGroups">
                         <br>
                         <b-row class="hover-section" v-for="group in groups" v-bind:key="group.id" v-on:click="chooseGroup(group)">
-                            <b-col col lg="7"></b-col>
+                            <b-col col lg="6"></b-col>
                             <b-col col lg="2" class="group"><div><h6>{{group.name}}</h6></div></b-col>
                         </b-row>
                     </div>
@@ -90,6 +90,7 @@ export default {
 
 .group {
     margin-top: 15px;
+    margin-right: 10px;
 }
 .group div {
     text-align: left;

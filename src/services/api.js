@@ -16,6 +16,13 @@ export default {
             })
     },
 
+    createGroupSchedule(payload) {
+        return http.post("/group", payload)
+            .then(res => {
+                return res
+            })
+    },
+
     login(payload) {
         return http.post("/session", payload)
             .then(res => {

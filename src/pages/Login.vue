@@ -36,7 +36,8 @@ export default {
             localStorage.setItem("token", data.token);
             var user = {
               name: data.firstName + " " + data.lastName,
-              groups : data.groups
+              groups : data.groups,
+              email: data.email
             }
             store.mutations.setUser(user);
             this.$router.push('/');
