@@ -1,19 +1,19 @@
 <template>
     <div>
-        <b-container id="content">
-            <b-row>
-                <b-col col lg="8">
-                    <div v-if="group">
-                        <schedule v-bind:sch="groupSchedule" :groupName="group.name"></schedule>
-                    </div>
-                </b-col>
-                <b-col col lb="4">
-                    <div id="group-details">
 
-                    </div>
-                </b-col>
-            </b-row>
-        </b-container>
+          <b-row>
+              <b-col col lg="8">
+                  <div v-if="groupSchedule">
+                      <schedule v-bind:sch="groupSchedule.schedule" :groupName="group.name"></schedule>
+                  </div>
+              </b-col>
+              <b-col col lg="4">
+                  <div id="group-details">
+
+                  </div>
+              </b-col>
+          </b-row>
+
     </div>
 </template>
 

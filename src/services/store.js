@@ -20,7 +20,7 @@ export default {
             state.group = val;
             API.getMasterSchedule(val.id)
                 .then(res => {
-                    state.groupSchedule = res.data.masterSchedule.schedule;
+                    state.groupSchedule = res.data;
                 })
         }
     }

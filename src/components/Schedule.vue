@@ -3,7 +3,6 @@
         <b-container id="content">
             <div id="header">
                 <b-row>
-
                     <b-col col lg="3"><h4>{{groupName}}:</h4></b-col>
                     <b-col col lg="9">
                         <b-row>
@@ -24,7 +23,7 @@
             </div>
             <br><br>
             <b-row>
-                <b-col col lg="10">
+                <b-col col lg="12">
                     <div id="schedule">
                         <b-row>
                             <b-col col lg="1"></b-col>

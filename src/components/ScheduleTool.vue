@@ -2,38 +2,38 @@
     <div>
         <b-container id="content">
             <b-row>
-                <b-col col lg="7">
+                <b-col col lg="8">
                     <div v-if="schedule">
                         <schedule v-bind:sch="schedule" groupName="generated"></schedule>
                     </div>
                     <h4 class="tip" v-else>generate a schedule...</h4>
                 </b-col>
-                <b-col col lb="5">
+                <b-col col lg="4">
                     <div id="tool-form">
                         Schedule Tool
                          <br><br>
                         <b-container>
-                            <b-row align-h="center" class="tool-input">
+                            <b-row align-h="center" class="tool-form">
                                 <b-col col lg="4"><span>start date:</span></b-col>
-                                <b-col col lg="6"><input type="date" @keyup="checkGenerateForm()" v-model="startDate" placeholder=" starting on week of"></b-col>
+                                <b-col col lg="7"><input class="tool-input" type="date" @keyup="checkGenerateForm()" v-model="startDate" placeholder=" starting on week of"></b-col>
                             </b-row>
-                            <b-row align-h="center" class="tool-input">
+                            <b-row align-h="center" class="tool-form">
                                 <b-col col lg="4"><span>n weeks:</span></b-col>
-                                <b-col col lg="6"><input type="number" @keyup="checkGenerateForm()" v-model="nWeeks" placeholder=" season # of weeks"></b-col>
+                                <b-col col lg="7"><input class="tool-input" type="number" @keyup="checkGenerateForm()" v-model="nWeeks" placeholder=" season # of weeks"></b-col>
                             </b-row>
-                            <b-row align-h="center" class="tool-input">
+                            <b-row align-h="center" class="tool-form">
                                 <b-col col lg="4"><span>n cycles:</span></b-col>
-                                <b-col col lg="6"><input type="number" @keyup="checkGenerateForm()" v-model="nCycles" placeholder=" # of season cycles"></b-col>
+                                <b-col col lg="7"><input class="tool-input" type="number" @keyup="checkGenerateForm()" v-model="nCycles" placeholder=" # of season cycles"></b-col>
                             </b-row>
                             <br>
                             <hr>
                             <br>
-                            <b-row align-h="center" class="tool-input">
-                                <b-col col lg="4"><button @click="addParticipant()"><span>+ member:</span></button></b-col>
-                                <b-col col lg="6"><input type="text" v-model="newParticipant" placeholder=" add participant"></b-col>
+                            <b-row align-h="center" class="tool-form">
+                                <b-col col lg="4"><button id="newMemberButton" @click="addParticipant()"><span>+</span></button></b-col>
+                                <b-col col lg="7"><input class="tool-input" type="text" v-model="newParticipant" placeholder=" add participant"></b-col>
                             </b-row>
 
-                            <b-row align-h="center" class="tool-input">
+                            <b-row align-h="center" class="tool-form">
                             <ul>
                                 <li class="participant-list" v-for="(p, i) in participantNames" :key="i">
                                     {{ p }}<unicon @click="removeParticipant(i)" class="remove" name="times" fill="royalblue"></unicon>
@@ -130,7 +130,7 @@ export default {
         this.checkGenerateForm();
     },
     removeParticipant(idx) {
-        this.participants.splice(idx, 1);
+        this.participantNames.splice(idx, 1);
         this.checkGenerateForm();
     },
     checkGenerateForm() {
@@ -250,6 +250,10 @@ export default {
     margin-bottom: 60px;
 }
 
+#newMemberButton {
+    width: 80%;
+}
+
 #open-convert {
     margin-bottom: 30px;
 }
@@ -264,8 +268,12 @@ export default {
     height: 100%;
 }
 
-.tool-input {
+.tool-form {
     margin-top: 20px;
+}
+
+.tool-input {
+    width: 90%;
 }
 
 .tip {

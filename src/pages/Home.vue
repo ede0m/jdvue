@@ -1,12 +1,11 @@
 <template>
     <div>
         <b-row>
-            <b-col col lg="3">
+            <b-col col lg="3"> 
               <jd-sidebar :groups=groups :name=name @sidebar-nav="swapComponent">
               </jd-sidebar>
-            </b-col>
+            </b-col> 
             <b-col col lg="9">
-              <!-- <schedule-group></schedule-group> -->
               <component v-bind:is="currentComponent"></component>
             </b-col>
         </b-row>

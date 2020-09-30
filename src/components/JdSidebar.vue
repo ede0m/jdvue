@@ -5,7 +5,7 @@
             :no-close-on-route-change="true"
             :no-header="true" 
             :visible="true" 
-            width="320px"
+            width="22%"
             shadow>
             <div class="px-3 py-2">
                 <br>
