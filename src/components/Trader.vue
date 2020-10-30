@@ -123,8 +123,13 @@ export default {
                 this.tradeForUnitInvalid = true;
             }
         } else {
-            this.tradeFor.push(this.selectedScheduleUnit);
-            this.executorEmail = this.tradeFor[0].participant
+            // cannot trade for a week you own
+            if (this.selectedScheduleUnit.participant === this.user.email){
+                this.tradeForUnitInvalid = true;
+            } else {
+                this.tradeFor.push(this.selectedScheduleUnit);
+                this.executorEmail = this.tradeFor[0].participant
+            }
         }
         this.checkCanTrade()
     },
@@ -172,10 +177,9 @@ export default {
             ExecutorTrades: tradeForIds
         };
         API.createTrade(payload)
-            .then((data) => {
+            .then(() => {
                 notify.success('trade proposed', 'http');
-                console.log(data.data);
-
+                this.clearTrade();
             })
             .catch(err => {
                 console.log(err)
