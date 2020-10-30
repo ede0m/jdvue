@@ -32,7 +32,7 @@
                                 <b-row class="season-block" v-for="block in currSeason.blocks" v-bind:key="block.id">
                                     <b-col col lg="12">
                                         <hr>
-                                        <b-row class="week " v-for="week in block.weeks" v-bind:key="week.id">
+                                        <b-row class="week" v-for="week in block.weeks" v-bind:key="week.id" v-on:click="clickScheduleUnit(week)">
                                             <b-col col lg="4"><p>{{dateFormat(week.startDate)}}</p></b-col>
                                             <b-col col lg="2"></b-col>
                                             <b-col col lg="5"><p>{{week.participant}}</p></b-col>
@@ -93,6 +93,9 @@ export default {
         if (this.currSeasonIdx < this.sch.seasons.length-1){
             this.currSeasonIdx++;
         }
+    },
+    clickScheduleUnit(unit) {
+        this.$emit('schedule-unit-click', unit)
     }
   }
 }

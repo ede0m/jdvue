@@ -4,12 +4,17 @@
           <b-row>
               <b-col col lg="8">
                   <div v-if="groupSchedule">
-                      <schedule v-bind:sch="groupSchedule.schedule" :groupName="group.name"></schedule>
+                      <schedule v-bind:sch="groupSchedule.schedule" :groupName="group.name" @schedule-unit-click="sendScheduleUnit"></schedule>
                   </div>
               </b-col>
               <b-col col lg="4">
-                  <div id="group-details">
-
+                  <div id="group-panel">  
+                      <!--<div id="details">
+                        <br>
+                        <p>admins: </p>
+                        <hr>
+                      </div> -->
+                      <trader :selectedScheduleUnit="scheduleUnit"></trader>
                   </div>
               </b-col>
           </b-row>
@@ -20,14 +25,23 @@
 <script>
 import store from '../services/store'
 import Schedule from '../components/Schedule'
+import Trader from '../components/Trader'
 
 export default {
   name: 'ScheduleGroup',
   components: {
-      Schedule
+      Schedule,
+      Trader
+  },
+  data: function() {
+      return {
+        scheduleUnit: null
+      }
   },
   methods: {
-
+    sendScheduleUnit: function(unit) {
+      this.scheduleUnit = unit;
+    }
   },
   computed: {
     group() {
@@ -43,7 +57,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-#group-details {
+#details p {
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#group-panel {
     height: 100%;
     border-left: solid 1px #6363635e;
 }

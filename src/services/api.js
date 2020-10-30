@@ -23,6 +23,13 @@ export default {
             })
     },
 
+    createTrade(payload) {
+        return http.post("/trade", payload)
+            .then(res => {
+                return res
+            })
+    },
+
     login(payload) {
         return http.post("/session", payload)
             .then(res => {
