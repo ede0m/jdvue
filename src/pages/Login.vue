@@ -37,7 +37,8 @@ export default {
             var user = {
               name: data.firstName + " " + data.lastName,
               groups : data.groups,
-              email: data.email
+              email: data.email,
+              id: data.id
             }
             store.mutations.setUser(user);
             this.$router.push('/');

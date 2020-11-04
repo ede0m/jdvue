@@ -40,7 +40,7 @@
                 <hr>
 
                 <div>
-                    <b-row class="hover-section">
+                    <b-row class="hover-section" v-on:click="setTradesView">
                         <b-col col lg="4"><unicon name="exchange" fill="royalblue"></unicon></b-col>
                         <b-col col lg="3"><h4 class="sidebar-label">trade</h4></b-col>
                     </b-row>
@@ -74,6 +74,9 @@ export default {
     },
     setToolView(){
         this.$emit('sidebar-nav', 'ScheduleTool')
+    },
+    setTradesView(){
+        this.$emit('sidebar-nav', 'Trades')
     }
   },
   data: function() {

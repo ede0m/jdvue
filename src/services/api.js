@@ -42,6 +42,13 @@ export default {
             .then(res => {
                 return res
             })
+    },
+
+    getTrades(userID) {
+        return http.get("/user/"+userID+"/trade")
+            .then(res => {
+                return res
+            })
     }
 
 }

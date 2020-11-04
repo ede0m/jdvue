@@ -17,13 +17,15 @@ import store from '../services/store'
 import JdSidebar from '../components/JdSidebar'
 import ScheduleGroup from '../components/ScheduleGroup'
 import ScheduleTool from '../components/ScheduleTool'
+import Trades from '../components/Trades'
 
 export default {
   name: 'Home',
   components: {
       JdSidebar,
       ScheduleGroup,
-      ScheduleTool
+      ScheduleTool,
+      Trades
   },
   data: function() {
       return {

@@ -4,7 +4,8 @@ import API from '../services/api'
 const state = Vue.observable({
     user: null,
     group: null,
-    groupSchedule: null
+    groupSchedule: null,
+    trades: null
 })
 
 export default {
@@ -13,6 +14,7 @@ export default {
         user: () =>  { return state.user },
         currentGroup: () => {return state.group},
         currentGroupSchedule: () => {return state.groupSchedule},
+        trades: () => {return state.trades}
     },
     mutations: {
         setUser: (val) => { state.user = val },
@@ -22,6 +24,9 @@ export default {
                 .then(res => {
                     state.groupSchedule = res.data;
                 })
+        },
+        setTrades: (val) => {
+            state.trades = val;
         }
     }
 }
