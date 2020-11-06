@@ -142,8 +142,8 @@ export default {
     },
     generateSchedule() {
         var payload = {
-            StartDate : new Date(this.startDate).toISOString(),
-            SeasonWeeks : Number(this.nWeeks),
+            Start : new Date(this.startDate).toISOString(),
+            SeasonUnits : Number(this.nWeeks),
             Years : Number(this.nCycles),
             Participants : this.participantNames
         };
@@ -209,19 +209,17 @@ export default {
             updatedParticipants[i] = map[this.schedule.participants[i]]
         }
         scheduleCopy.participants = updatedParticipants;
-        // convert weeks
+        // convert schedule units
         scheduleCopy.seasons.forEach(function(s){
             s.blocks.forEach(function(b){
-                b.weeks.forEach(function(w){
-                    var p = w.participant;
-                    w.participant = map[p]; // switch to email
+                b.units.forEach(function(u){
+                    var p = u.participant;
+                    u.participant = map[p]; // switch to email
                 });
             });
         });
         return scheduleCopy;
     }
-
-
   },
   data: function() {
       return {

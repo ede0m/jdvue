@@ -17,7 +17,7 @@
                     <br>
                     <ul>
                         <li class="trade-list" v-for="(p, i) in tradeFor" :key="i">
-                            {{ dateFormat(p.startDate) }}<unicon @click="removeUnit(i, tradeFor)" class="remove" name="times" fill="royalblue"></unicon>
+                            {{ dateFormat(p.start) }}<unicon @click="removeUnit(i, tradeFor)" class="remove" name="times" fill="royalblue"></unicon>
                         </li>
                     </ul>
                     <br>
@@ -33,7 +33,7 @@
                     <br>
                     <ul>
                         <li class="trade-list" v-for="(p, i) in tradeAway" :key="i">
-                            {{ dateFormat(p.startDate) }}<unicon @click="removeUnit(i, tradeAway)" class="remove" name="times" fill="royalblue"></unicon>
+                            {{ dateFormat(p.start) }}<unicon @click="removeUnit(i, tradeAway)" class="remove" name="times" fill="royalblue"></unicon>
                         </li>
                     </ul>
 
@@ -75,7 +75,7 @@ export default {
   computed:  {
       tradeUnitDate() {
         if (this.selectedScheduleUnit != null){
-            return this.dateFormat(this.selectedScheduleUnit.startDate);
+            return this.dateFormat(this.selectedScheduleUnit.start);
         }
         return null;
       },
@@ -123,7 +123,7 @@ export default {
                 this.tradeForUnitInvalid = true;
             }
         } else {
-            // cannot trade for a week you own
+            // cannot trade for a unit you own
             if (this.selectedScheduleUnit.participant === this.user.email){
                 this.tradeForUnitInvalid = true;
             } else {

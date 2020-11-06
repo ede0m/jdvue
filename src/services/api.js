@@ -30,6 +30,13 @@ export default {
             })
     },
 
+    acknowledgeTrade(payload){
+        return http.patch("/trade", payload)
+            .then(res => {
+                return res
+            })
+    },
+
     login(payload) {
         return http.post("/session", payload)
             .then(res => {
